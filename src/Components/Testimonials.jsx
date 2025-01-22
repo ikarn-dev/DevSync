@@ -23,7 +23,7 @@ function Testimonials() {
   const repeatedTestimonials = [...testimonials, ...testimonials];
 
   return (
-    <div className="w-full px-4 sm:px-6 md:px-8 lg:px-24 2xl:px-72 py-24">
+    <div className="w-full bg-[#FAF9F6] px-4 sm:px-6 md:px-8 lg:px-24 2xl:px-72 py-24">
       <div className="w-full flex flex-col items-center">
         <h2 className="text-gray-800 font-medium text-center tracking-tight leading-tight text-2xl sm:text-3xl md:text-4xl lg:text-[39px]">
           What Our Clients Say

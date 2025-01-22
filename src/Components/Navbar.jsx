@@ -61,7 +61,7 @@ const Navbar = () => {
     setIsMenuOpen((prev) => !prev);
   };
 
-  const navLinkClasses = `font-medium ${textColor} hover:opacity-80 px-3 py-2 transition-colors inline-block relative group`;
+  const navLinkClasses = `font-medium ${textColor} text-gray-600 hover:text-white hover:bg-gray-700 px-3 py-2 transition-all duration-300 inline-block relative group`;
   const underlineClasses = `absolute -bottom-1 left-0 w-full h-0.5 ${textColor === "text-white" ? "bg-white" : "bg-black"} transform origin-left scale-x-0 transition-transform duration-300 group-hover:scale-x-100`;
 
   return (
@@ -93,8 +93,9 @@ const Navbar = () => {
                 </Link>
               </div>
             ))}
-            <Link
-              to="/contact"
+            {/* Modify the Contact Us button to link to mailto */}
+            <a
+              href="mailto:ikarn.dev@gmail.com"
               className={`px-4 py-2 inline-flex items-center justify-center ${
                 textColor === "text-white"
                   ? "bg-white text-black hover:bg-gray-200"
@@ -102,12 +103,12 @@ const Navbar = () => {
               } font-semibold text-center rounded-xl transition-colors`}
             >
               Contact Us
-            </Link>
+            </a>
           </div>
 
           <div className="md:hidden flex items-center space-x-4">
-            <Link
-              to="/contact"
+            <a
+              href="mailto:ikarn.dev@gmail.com"
               className={`px-4 py-2 inline-flex items-center justify-center ${
                 textColor === "text-white"
                   ? "bg-white text-black hover:bg-gray-200"
@@ -115,7 +116,7 @@ const Navbar = () => {
               } text-center rounded-xl transition-colors`}
             >
               Contact
-            </Link>
+            </a>
             <button
               onClick={toggleMenu}
               className={`relative w-10 h-10 ${

@@ -5,15 +5,28 @@ function ContactUS() {
 
   const handleClick = () => {
     setIsClicked(true);
-    // Reset the click state after animation duration (e.g., 0.2 seconds)
+
+    // Redirect to Gmail when the button is clicked
     setTimeout(() => {
-      setIsClicked(false);
-    }, 200); // Match the animation duration
+      window.location.href = "mailto:ikarn.dev@gmail.com"; // Open Gmail compose with the specified email address
+    }, 200); // Match the animation duration before redirecting
   };
 
   return (
-    <div className="bg-black mt-5 mb-5" style={{ width: '100%', height: '250px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center' }}>
-      <h1 className="text-xl text-white" style={{ textAlign: 'center' }}>Get in Touch</h1>
+    <div
+      className="bg-black"
+      style={{
+        width: '100%',
+        height: '250px',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+      }}
+    >
+      <h1 className="text-xl text-white" style={{ textAlign: 'center' }}>
+        Get in Touch
+      </h1>
       <button
         onClick={handleClick}
         style={{
