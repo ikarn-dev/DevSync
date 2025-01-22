@@ -2,6 +2,9 @@ import React, { useState, useRef, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 
+// Import the logo image
+import DevSyncLogo from "../assets/images/DevSync_Logo.png"; 
+
 const NAV_LINKS = [
   { to: "/", label: "Home" },
   { to: "/about", label: "About" },
@@ -71,7 +74,7 @@ const Navbar = () => {
           <Link to="/" className="flex items-center" aria-label="Home">
             <div className="relative h-8 w-32">
               <img
-                src="/src/assets/images/DevSync_Logo.png"
+                src={DevSyncLogo}  // Use the imported logo here
                 alt="Company Logo"
                 className={`object-contain transition-all duration-200 ${
                   textColor === "text-white" ? "filter invert" : ""
