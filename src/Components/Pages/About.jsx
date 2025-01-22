@@ -48,7 +48,7 @@ function About() {
           <div className="grid md:grid-cols-2 gap-8">
             <div className="bg-gray-50 rounded-xl p-6 text-center">
               <img
-                src="/src/assets/images/madhu_pfp.jpg"
+                src="/src/assets/images/madhu_pfp.svg"
                 alt="Madhusudhan Reddy"
                 className="w-32 h-32 rounded-full mx-auto mb-4 object-cover"
               />
@@ -60,7 +60,7 @@ function About() {
             </div>
             <div className="bg-gray-50 rounded-xl p-6 text-center">
               <img
-                src="/src/assets/images/Karan_pfp.jpg"
+                src="/src/assets/images/Karan_pfp.svg"
                 alt="Karan"
                 className="w-32 h-32 rounded-full mx-auto mb-4 object-cover"
               />
