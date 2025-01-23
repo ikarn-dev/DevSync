@@ -16,7 +16,9 @@ const Navbar = () => {
   const location = useLocation();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [textColor, setTextColor] = useState("text-black");
+  const [isAnimating, setIsAnimating] = useState(false);
   const navRef = useRef(null);
+  const dropdownRef = useRef(null);
 
   const updateTextColor = () => {
     if (!navRef.current) return;
@@ -61,7 +63,14 @@ const Navbar = () => {
   }, []);
 
   const toggleMenu = () => {
+    if (isAnimating) return;
+    
     setIsMenuOpen((prev) => !prev);
+    setIsAnimating(true);
+    
+    setTimeout(() => {
+      setIsAnimating(false);
+    }, 300); // Match the transition duration
   };
 
   const navLinkClasses = `font-medium ${textColor} text-gray-600 hover:text-white hover:bg-gray-700 px-3 py-2 transition-all duration-300 inline-block relative group`;
@@ -74,7 +83,7 @@ const Navbar = () => {
           <Link to="/" className="flex items-center" aria-label="Home">
             <div className="relative h-8 w-32">
               <img
-                src={DevSyncLogo}  // Use the imported logo here
+                src={DevSyncLogo}
                 alt="Company Logo"
                 className={`object-contain transition-all duration-200 ${
                   textColor === "text-white" ? "filter invert" : ""
@@ -96,7 +105,6 @@ const Navbar = () => {
                 </Link>
               </div>
             ))}
-            {/* Modify the Contact Us button to link to mailto */}
             <a
               href="mailto:ikarn.dev@gmail.com"
               className={`px-4 py-2 inline-flex items-center justify-center ${
@@ -129,9 +137,19 @@ const Navbar = () => {
               aria-expanded={isMenuOpen}
             >
               {isMenuOpen ? (
-                <X className={textColor === "text-white" ? "text-black" : "text-white"} size={24} />
+                <X 
+                  className={`transition-all duration-300 ${
+                    textColor === "text-white" ? "text-black" : "text-white"
+                  }`} 
+                  size={24} 
+                />
               ) : (
-                <Menu className={textColor === "text-white" ? "text-black" : "text-white"} size={24} />
+                <Menu 
+                  className={`transition-all duration-300 ${
+                    textColor === "text-white" ? "text-black" : "text-white"
+                  }`} 
+                  size={24} 
+                />
               )}
             </button>
           </div>
@@ -139,17 +157,52 @@ const Navbar = () => {
       </div>
 
       <div
-        className={`md:hidden overflow-hidden ${
-          isMenuOpen ? "h-auto opacity-100" : "h-0 opacity-0"
-        } backdrop-blur-md transition-all duration-200`}
+        className={`
+          md:hidden 
+          overflow-hidden 
+          transition-all 
+          duration-300 
+          ease-in-out 
+          transform 
+          origin-top 
+          ${isMenuOpen 
+            ? "scale-y-100 opacity-100" 
+            : "scale-y-0 opacity-0"
+          } 
+          backdrop-blur-md
+        `}
+        style={{
+          transformOrigin: 'top center',
+          height: isMenuOpen ? 'auto' : '0',
+          transitionProperty: 'transform, opacity, height',
+        }}
       >
         <div className="flex flex-col items-start pt-4 pb-4 px-6 space-y-4">
-          {NAV_LINKS.map((link) => (
+          {NAV_LINKS.map((link, index) => (
             <Link
               key={link.to}
               to={link.to}
-              className={`text-lg ${textColor} hover:opacity-80 transition-colors inline-block relative group`}
-              onClick={() => setIsMenuOpen(false)}
+              className={`
+                text-lg 
+                ${textColor} 
+                hover:opacity-80 
+                transition-all 
+                duration-300 
+                delay-${index * 50} 
+                transform 
+                ${isMenuOpen 
+                  ? "translate-y-0 opacity-100" 
+                  : "translate-y-4 opacity-0"
+                } 
+                inline-block 
+                relative 
+                group
+              `}
+              onClick={() => {
+                if (!isAnimating) {
+                  setIsMenuOpen(false);
+                }
+              }}
             >
               <span className="relative">
                 {link.label}
